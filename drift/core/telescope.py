@@ -446,10 +446,6 @@ class TransitTelescope(config.Reader):
 
         beam_map = _merge_keyarray(bci, bcj)
 
-        # beam_map[np.tril_indices(self.nfeed, -1)] = beam_map.T[np.tril_indices(self.nfeed, -1)]
-
-        # beam_map = _remap_keyarray(beam_map)
-
         if self.auto_correlations:
             beam_mask = np.ones(fshape, dtype=np.bool)
         else:
@@ -457,7 +453,6 @@ class TransitTelescope(config.Reader):
 
         return beam_map, beam_mask
 
-    #def _remap_conj
 
 
     def _get_unique(self):
@@ -496,6 +491,11 @@ class TransitTelescope(config.Reader):
  
 
     def _sort_pairs(self):
+        """Re-order keys into a desired sort order.
+
+        By default the order is lexicographic in (baseline u, baselines v,
+        beamclass i, beamclass j).
+        """
 
         # Create mask of included pairs, that are not conjugated
         tmask = np.logical_and(self._feedmask, np.logical_not(self._feedconj))
@@ -508,6 +508,9 @@ class TransitTelescope(config.Reader):
         by = self.feedpositions[fi, 1] - self.feedpositions[fj, 1]
         ci = self.beamclass[fi]
         cj = self.beamclass[fj]
+
+        ## Sort by constructing a numpy array with the keys as fields, and use
+        ## np.argsort to get the indices
 
         # Create array of keys to sort
         dt = np.dtype('f8,f8,i4,i4')

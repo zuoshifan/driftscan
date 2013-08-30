@@ -517,8 +517,8 @@ class TransitTelescope(config.Reader):
         sort_arr = np.zeros(fi.size, dtype=dt)
         sort_arr['f0'] = bx
         sort_arr['f1'] = by
-        sort_arr['f2'] = ci
-        sort_arr['f3'] = cj
+        sort_arr['f2'] = cj
+        sort_arr['f3'] = ci
 
         # Get map which sorts
         sort_ind = np.argsort(sort_arr)

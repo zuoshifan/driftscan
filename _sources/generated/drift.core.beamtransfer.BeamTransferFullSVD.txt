@@ -1,0 +1,88 @@
+drift.core.beamtransfer.BeamTransferFullSVD
+===========================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoclass:: BeamTransferFullSVD
+
+   
+
+    .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+        .. autosummary::
+            :toctree:
+        
+            BeamTransferFullSVD.__format__
+            BeamTransferFullSVD.__init__
+            BeamTransferFullSVD.__new__
+            BeamTransferFullSVD.__reduce__
+            BeamTransferFullSVD.__reduce_ex__
+            BeamTransferFullSVD.__sizeof__
+            BeamTransferFullSVD.__subclasshook__
+            BeamTransferFullSVD._collect_svd_spectrum
+            BeamTransferFullSVD._fdir
+            BeamTransferFullSVD._ffile
+            BeamTransferFullSVD._generate_dirs
+            BeamTransferFullSVD._generate_ffiles
+            BeamTransferFullSVD._generate_mfiles
+            BeamTransferFullSVD._generate_svdfiles
+            BeamTransferFullSVD._load_beam_freq
+            BeamTransferFullSVD._load_beam_m
+            BeamTransferFullSVD._mdir
+            BeamTransferFullSVD._mfile
+            BeamTransferFullSVD._svd_freq_iter
+            BeamTransferFullSVD._svd_num
+            BeamTransferFullSVD._svdfile
+            BeamTransferFullSVD.beam_freq
+            BeamTransferFullSVD.beam_m
+            BeamTransferFullSVD.beam_singularvalues
+            BeamTransferFullSVD.beam_svd
+            BeamTransferFullSVD.beam_ut
+            BeamTransferFullSVD.generate
+            BeamTransferFullSVD.generate_cache
+            BeamTransferFullSVD.invbeam_m
+            BeamTransferFullSVD.invbeam_svd
+            BeamTransferFullSVD.ndof
+            BeamTransferFullSVD.project_matrix_diagonal_telescope_to_svd
+            BeamTransferFullSVD.project_matrix_forward
+            BeamTransferFullSVD.project_matrix_sky_to_svd
+            BeamTransferFullSVD.project_matrix_sky_to_telescope
+            BeamTransferFullSVD.project_vector_backward
+            BeamTransferFullSVD.project_vector_backward_dirty
+            BeamTransferFullSVD.project_vector_forward
+            BeamTransferFullSVD.project_vector_sky_to_svd
+            BeamTransferFullSVD.project_vector_sky_to_telescope
+            BeamTransferFullSVD.project_vector_svd_to_sky
+            BeamTransferFullSVD.project_vector_telescope_to_sky
+            BeamTransferFullSVD.project_vector_telescope_to_svd
+            BeamTransferFullSVD.svd_all
+
+
+
+   
+
+    .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+        .. autosummary::
+            :toctree:
+        
+            BeamTransferFullSVD.__delattr__
+            BeamTransferFullSVD.__dict__
+            BeamTransferFullSVD.__doc__
+            BeamTransferFullSVD.__getattribute__
+            BeamTransferFullSVD.__hash__
+            BeamTransferFullSVD.__module__
+            BeamTransferFullSVD.__repr__
+            BeamTransferFullSVD.__setattr__
+            BeamTransferFullSVD.__str__
+            BeamTransferFullSVD.__weakref__
+            BeamTransferFullSVD._mem_switch
+            BeamTransferFullSVD._picklefile
+            BeamTransferFullSVD._telescope_pickle
+            BeamTransferFullSVD.ndofmax
+            BeamTransferFullSVD.nfreq
+            BeamTransferFullSVD.noise_weight
+            BeamTransferFullSVD.nsky
+            BeamTransferFullSVD.ntel
+            BeamTransferFullSVD.polsvcut
+            BeamTransferFullSVD.svcut
+            BeamTransferFullSVD.svd_len
+

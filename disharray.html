@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dish Array Example &mdash; driftscan 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="driftscan 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd" href="generated/drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> driftscan</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of Driftscan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#generating-the-analysis-products">Generating the Analysis Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#running-the-pipeline">Running the Pipeline</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="beamtransfer.html">Beam Transfer Matrices (<tt class="docutils literal"><span class="pre">beamtransfer</span></tt>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="beamtransfer.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Dish Array Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#telescope-class">Telescope class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-driver">Python Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yaml-config">YAML Config</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">driftscan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Dish Array Example</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="dish-array-example">
+<h1>Dish Array Example<a class="headerlink" href="#dish-array-example" title="Permalink to this headline">¶</a></h1>
+<p>This example contains a custom telescope class that simulates an
+interferometric grid of dishes, it then uses this to construct a synthetic
+timestream, and then it forms the m-modes to make a map out of them. The
+source files can be found under <tt class="docutils literal"><span class="pre">examples/disharray/</span></tt> in the git repository.</p>
+<p>The custom telescope is contained in the file <tt class="docutils literal"><span class="pre">simplearray.py</span></tt>.</p>
+<p>The example can be run in two ways, first using the python program in
+<tt class="docutils literal"><span class="pre">driver.py</span></tt> which can be run by simply doing:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python driver.py
+</pre></div>
+</div>
+<p>or to speed things up, you can run:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ export OMP_NUM_THREADS=&lt;DESIRED THREAD NUM&gt;
+$ mpirun -np N python driver.py
+</pre></div>
+</div>
+<p>where the <tt class="docutils literal"><span class="pre">OMP_NUM_THREADS</span></tt> is only useful if you are using threaded
+numerical libraries (libsharp for SHT, MKL for linear algebra).</p>
+<p>The second way to run the code is to use the <cite>YAML</cite> configuration file
+interface. Simply run:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ drift-makeproducts run prod_params.yaml
+$ drift-runpipeline run pipe_params.yaml
+</pre></div>
+</div>
+<p>In both cases you&#8217;ll need a sky map to simulate. To get a quick map of the
+galaxy, try running:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cora-makesky galaxy 256 100.0 150.0 5 simulated_map.hdf5
+</pre></div>
+</div>
+<div class="section" id="telescope-class">
+<h2>Telescope class<a class="headerlink" href="#telescope-class" title="Permalink to this headline">¶</a></h2>
+<p>A custom telescope class that simulates an interferometric array of dishes.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">jn</span>
+
+<span class="kn">from</span> <span class="nn">cora.util</span> <span class="kn">import</span> <span class="n">coord</span>
+<span class="kn">from</span> <span class="nn">drift.core</span> <span class="kn">import</span> <span class="n">telescope</span>
+
+
+<span class="k">def</span> <span class="nf">beam_circular</span><span class="p">(</span><span class="n">angpos</span><span class="p">,</span> <span class="n">zenith</span><span class="p">,</span> <span class="n">diameter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Beam pattern for a uniformly illuminated circular dish.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    angpos : np.ndarray</span>
+<span class="sd">        Array of angular positions</span>
+<span class="sd">    zenith : np.ndarray</span>
+<span class="sd">        Co-ordinates of the zenith.</span>
+<span class="sd">    diameter : scalar</span>
+<span class="sd">        Diameter of the dish (in units of wavelength).</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    beam : np.ndarray</span>
+<span class="sd">        Beam pattern at each position in angpos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">jinc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">jn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">jn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">coord</span><span class="o">.</span><span class="n">sph_dot</span><span class="p">(</span><span class="n">angpos</span><span class="p">,</span> <span class="n">zenith</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">diameter</span>
+    
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">jinc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DishArray</span><span class="p">(</span><span class="n">telescope</span><span class="o">.</span><span class="n">SimplePolarisedTelescope</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Telescope describing an interferometric array of dishes.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    gridu, gridv : integer</span>
+<span class="sd">        Number of dishes in u and v directions.</span>
+<span class="sd">    dish_width : scalar</span>
+<span class="sd">        Width of the dish in metres.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    This class also inherits some useful properties, such as `zenith` for</span>
+<span class="sd">    giving the telescope location and `tsys_flat` for giving the system</span>
+<span class="sd">    temperature.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c"># Set band properties (overriding baseclass)</span>
+    <span class="n">freq_lower</span> <span class="o">=</span> <span class="mf">100.0</span>
+    <span class="n">freq_upper</span> <span class="o">=</span> <span class="mf">150.0</span>
+    <span class="n">num_freq</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="c"># Properties for the Dish Array</span>
+    <span class="n">dish_width</span> <span class="o">=</span> <span class="mf">3.5</span>
+    <span class="n">gridu</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">gridv</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="c"># Give the widths in the U and V directions in metres (used for</span>
+    <span class="c"># calculating the maximum l and m)</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">u_width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">v_width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span>
+
+
+    <span class="c"># Implement the X and Y beam patterns (assuming all feeds are identical).</span>
+    <span class="c"># These need to return a vector for each position on the sky</span>
+    <span class="c"># (self._angpos) in thetahat, phihat coordinates.</span>
+    <span class="k">def</span> <span class="nf">beamx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feed</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
+        <span class="c"># Calculate beam amplitude</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">beam_circular</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angpos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">zenith</span><span class="p">,</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">[</span><span class="n">freq</span><span class="p">])</span>
+
+        <span class="c"># Add a vector direction to beam - X beam is EW (phihat)</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">beam</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">beam</span>
+
+    <span class="k">def</span> <span class="nf">beamy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feed</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
+        <span class="c"># Calculate beam amplitude</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">beam_circular</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angpos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">zenith</span><span class="p">,</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">[</span><span class="n">freq</span><span class="p">])</span>
+
+        <span class="c"># Add a vector direction to beam - Y beam is NS (thetahat)</span>
+        <span class="c"># Fine provided beam does not cross a pole.</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">beam</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">beam</span>
+
+
+    <span class="c"># Set the feed array of feed positions (in metres EW, NS)</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_single_feedpositions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">gridu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gridv</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridu</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridv</span><span class="p">):</span>
+                <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span>
+                <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dish_width</span>
+        
+        <span class="k">return</span> <span class="n">pos</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">gridu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gridv</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="python-driver">
+<h2>Python Driver<a class="headerlink" href="#python-driver" title="Permalink to this headline">¶</a></h2>
+<p>A python script that constructs a synthetic timestream from a given map and
+the dish array telescope. This timstream is then analysed to produce an
+observed sky map.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="kn">from</span> <span class="nn">drift.core</span> <span class="kn">import</span> <span class="n">beamtransfer</span><span class="p">,</span> <span class="n">manager</span>
+<span class="kn">from</span> <span class="nn">drift.pipeline</span> <span class="kn">import</span> <span class="n">timestream</span>
+
+<span class="kn">from</span> <span class="nn">simplearray</span> <span class="kn">import</span> <span class="n">DishArray</span>
+
+<span class="c">### Make the analysis products for the telescope. This examples focuses only</span>
+<span class="c">### on the m-mode products for mapmaking</span>
+
+<span class="c"># Create telescope object and set zenith</span>
+<span class="n">tel</span> <span class="o">=</span> <span class="n">DishArray</span><span class="p">()</span>
+<span class="n">tel</span><span class="o">.</span><span class="n">zenith</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>  <span class="c"># Must be in radians</span>
+
+<span class="c"># Create Beam Transfer manager, and generate products</span>
+<span class="n">bt</span> <span class="o">=</span> <span class="n">beamtransfer</span><span class="o">.</span><span class="n">BeamTransfer</span><span class="p">(</span><span class="s">&#39;pydriver/btdir/&#39;</span><span class="p">,</span>  <span class="n">telescope</span><span class="o">=</span><span class="n">tel</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+
+
+
+<span class="c">### Simulate and make a map froma timestream</span>
+
+<span class="c"># Create an empty ProductManager</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">ProductManager</span><span class="p">()</span>
+
+<span class="c"># Set the Beam Transfers</span>
+<span class="n">m</span><span class="o">.</span><span class="n">beamtransfer</span> <span class="o">=</span> <span class="n">bt</span>
+
+<span class="c"># Create a timestream with no noise (ndays=0) from a given map (could be a list of maps)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">timestream</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s">&#39;pydriver/ts1/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;simulated_map.hdf5&#39;</span><span class="p">],</span> <span class="n">ndays</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c"># Make m-mode from the timestream</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">generate_mmodes</span><span class="p">()</span>
+
+<span class="c"># Make a Healpix map from the m-modes (with NSIDE=256)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">mapmake_full</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="s">&#39;observed_map.hdf5&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="yaml-config">
+<h2>YAML Config<a class="headerlink" href="#yaml-config" title="Permalink to this headline">¶</a></h2>
+<p>We can achieve the same results using the <tt class="docutils literal"><span class="pre">YAML</span></tt> configuration file drivers. The config file for generating the analysis products is:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="c1"># Only generate Beam Transfers.</span>
+    <span class="l-Scalar-Plain">beamtransfers</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">Yes</span>
+    <span class="l-Scalar-Plain">kltransform</span><span class="p-Indicator">:</span>        <span class="l-Scalar-Plain">No</span>
+    <span class="l-Scalar-Plain">psfisher</span><span class="p-Indicator">:</span>           <span class="l-Scalar-Plain">No</span>
+
+    <span class="l-Scalar-Plain">output_directory</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">yamldriver/proddir</span>
+
+<span class="l-Scalar-Plain">telescope</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span>
+        <span class="c1"># Mechanism to specify a custom class</span>
+        <span class="l-Scalar-Plain">class</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">DishArray</span>
+        <span class="l-Scalar-Plain">module</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">simplearray</span>
+        <span class="l-Scalar-Plain">file</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">simplearray.py</span>
+
+    <span class="c1"># Set the zenith (config file takes degrees)</span>
+    <span class="l-Scalar-Plain">zenith</span><span class="p-Indicator">:</span>     <span class="p-Indicator">[</span><span class="nv">30.0</span><span class="p-Indicator">,</span> <span class="nv">0.0</span><span class="p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>and the one for configuring and running the pipeline is:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+
+    <span class="c1"># Specify the location of the Beam Transfer matrices</span>
+    <span class="l-Scalar-Plain">product_directory</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">yamldriver/proddir/</span>
+
+    <span class="c1"># Tell the pipeline what to do...</span>
+    <span class="l-Scalar-Plain">generate_mmodes</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">Yes</span>
+    <span class="l-Scalar-Plain">generate_maps</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">Yes</span>
+
+<span class="l-Scalar-Plain">timestreams</span><span class="p-Indicator">:</span>
+
+    <span class="c1"># Describe the timestreams to analyse</span>
+    <span class="p-Indicator">-</span>   <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span>       <span class="l-Scalar-Plain">ts1</span>
+        <span class="l-Scalar-Plain">directory</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">yamldriver/timestream/</span>
+
+        <span class="c1"># If there is a simulate section in a timestream, then it is</span>
+        <span class="c1"># constructed from the input</span>
+        <span class="l-Scalar-Plain">simulate</span><span class="p-Indicator">:</span>
+
+            <span class="c1"># List of maps to add into the simulation</span>
+            <span class="l-Scalar-Plain">maps</span><span class="p-Indicator">:</span>
+                <span class="p-Indicator">-</span>   <span class="l-Scalar-Plain">simulated_map.hdf5</span>
+
+            <span class="c1"># Need to specify again (such that we can simulate with a</span>
+            <span class="c1"># different telescope than we use for analysis)</span>
+            <span class="l-Scalar-Plain">product_directory</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">yamldriver/proddir/</span>
+
+            <span class="c1"># Set the noise level to zero (ndays=0)</span>
+            <span class="l-Scalar-Plain">ndays</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">0</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+      
+        <a href="generated/drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd.html" class="btn btn-neutral" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, J. Richard Shaw.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

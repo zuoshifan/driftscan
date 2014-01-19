@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._svd_num
+=============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer._svd_num

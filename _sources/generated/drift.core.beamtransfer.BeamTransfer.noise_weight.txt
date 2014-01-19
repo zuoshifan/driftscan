@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.noise_weight
+=================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.noise_weight

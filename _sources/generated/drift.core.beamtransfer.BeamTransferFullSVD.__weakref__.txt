@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransferFullSVD.__weakref__
+=======================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransferFullSVD.__weakref__

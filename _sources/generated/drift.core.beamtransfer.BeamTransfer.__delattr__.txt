@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.__delattr__
+================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.__delattr__

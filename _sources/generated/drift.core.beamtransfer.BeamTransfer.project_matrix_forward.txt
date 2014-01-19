@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.project_matrix_forward
+===========================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.project_matrix_forward

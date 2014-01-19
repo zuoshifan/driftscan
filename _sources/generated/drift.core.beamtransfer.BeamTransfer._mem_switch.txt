@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._mem_switch
+================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer._mem_switch

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.svd_len
+============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.svd_len

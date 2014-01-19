@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.ndofmax
+============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.ndofmax

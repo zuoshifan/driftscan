@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.project_matrix_diagonal_telescope_to_svd
+=============================================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.project_matrix_diagonal_telescope_to_svd

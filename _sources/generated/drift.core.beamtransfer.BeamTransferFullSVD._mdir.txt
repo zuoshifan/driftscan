@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransferFullSVD._mdir
+=================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransferFullSVD._mdir

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._telescope_pickle
+======================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer._telescope_pickle

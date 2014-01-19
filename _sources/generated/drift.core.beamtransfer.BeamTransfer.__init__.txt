@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.__init__
+=============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.__init__

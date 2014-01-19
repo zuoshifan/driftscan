@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._fdir
+==========================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer._fdir

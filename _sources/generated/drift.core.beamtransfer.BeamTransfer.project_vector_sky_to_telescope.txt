@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_telescope
+====================================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.project_vector_sky_to_telescope

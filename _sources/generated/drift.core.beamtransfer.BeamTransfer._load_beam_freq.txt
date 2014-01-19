@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._load_beam_freq
+====================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer._load_beam_freq

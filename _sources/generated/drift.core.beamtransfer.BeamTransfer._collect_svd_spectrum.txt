@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._collect_svd_spectrum
+==========================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer._collect_svd_spectrum

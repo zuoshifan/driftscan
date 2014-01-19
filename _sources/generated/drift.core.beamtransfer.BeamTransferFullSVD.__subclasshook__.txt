@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransferFullSVD.__subclasshook__
+============================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransferFullSVD.__subclasshook__

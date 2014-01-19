@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>drift.core.beamtransfer.BeamTransfer &mdash; driftscan 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../',
+        VERSION:'0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="driftscan 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Beam Transfer Matrices (beamtransfer)" href="../beamtransfer.html"/>
+        <link rel="next" title="drift.core.beamtransfer.BeamTransfer.ntel" href="drift.core.beamtransfer.BeamTransfer.ntel.html"/>
+        <link rel="prev" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd" href="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> driftscan</a>
+        <form class="wy-form" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview of Driftscan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#generating-the-analysis-products">Generating the Analysis Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#running-the-pipeline">Running the Pipeline</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../beamtransfer.html">Beam Transfer Matrices (<tt class="docutils literal"><span class="pre">beamtransfer</span></tt>)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../beamtransfer.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disharray.html">Dish Array Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../disharray.html#telescope-class">Telescope class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../disharray.html#python-driver">Python Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../disharray.html#yaml-config">YAML Config</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">driftscan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="../index.html">Docs</a> &raquo;</li>
+  <li><a href="">drift.core.beamtransfer.BeamTransfer</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="drift-core-beamtransfer-beamtransfer">
+<h1>drift.core.beamtransfer.BeamTransfer<a class="headerlink" href="#drift-core-beamtransfer-beamtransfer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="drift.core.beamtransfer.BeamTransfer">
+<em class="property">class </em><tt class="descclassname">drift.core.beamtransfer.</tt><tt class="descname">BeamTransfer</tt><big>(</big><em>directory</em>, <em>telescope=None</em><big>)</big><a class="headerlink" href="#drift.core.beamtransfer.BeamTransfer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for reading and writing Beam Transfer matrices from disk.</p>
+<p>In addition this provides methods for projecting vectors and matrices
+between the sky and the telescope basis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>directory</strong> : string</p>
+<blockquote>
+<div><p>Path of directory to read and write Beam Transfers from.</p>
+</div></blockquote>
+<p><strong>telescope</strong> : drift.core.telescope.TransitTelescope, optional</p>
+<blockquote class="last">
+<div><p>Telescope object to use for calculation. If <cite>None</cite> (default), try to
+load a cached version from the given directory.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.ntel.html#drift.core.beamtransfer.BeamTransfer.ntel" title="drift.core.beamtransfer.BeamTransfer.ntel"><tt class="xref py py-obj docutils literal"><span class="pre">ntel</span></tt></a></td>
+<td>Degrees of freedom measured by the telescope (per frequency)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.nsky.html#drift.core.beamtransfer.BeamTransfer.nsky" title="drift.core.beamtransfer.BeamTransfer.nsky"><tt class="xref py py-obj docutils literal"><span class="pre">nsky</span></tt></a></td>
+<td>Degrees of freedom on the sky at each frequency.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.nfreq.html#drift.core.beamtransfer.BeamTransfer.nfreq" title="drift.core.beamtransfer.BeamTransfer.nfreq"><tt class="xref py py-obj docutils literal"><span class="pre">nfreq</span></tt></a></td>
+<td>Number of frequencies measured.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.svd_len.html#drift.core.beamtransfer.BeamTransfer.svd_len" title="drift.core.beamtransfer.BeamTransfer.svd_len"><tt class="xref py py-obj docutils literal"><span class="pre">svd_len</span></tt></a></td>
+<td>The size of the SVD output matrices.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>svcut</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>polsvcut</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>ndofmax</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.ndof.html#drift.core.beamtransfer.BeamTransfer.ndof" title="drift.core.beamtransfer.BeamTransfer.ndof"><tt class="xref py py-obj docutils literal"><span class="pre">ndof</span></tt></a>(mi)</td>
+<td>The number of degrees of freedom at a given m.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.beam_m.html#drift.core.beamtransfer.BeamTransfer.beam_m" title="drift.core.beamtransfer.BeamTransfer.beam_m"><tt class="xref py py-obj docutils literal"><span class="pre">beam_m</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Fetch the beam transfer matrix for a given m.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.invbeam_m.html#drift.core.beamtransfer.BeamTransfer.invbeam_m" title="drift.core.beamtransfer.BeamTransfer.invbeam_m"><tt class="xref py py-obj docutils literal"><span class="pre">invbeam_m</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Pseudo-inverse of the beam (for a given m).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.beam_svd.html#drift.core.beamtransfer.BeamTransfer.beam_svd" title="drift.core.beamtransfer.BeamTransfer.beam_svd"><tt class="xref py py-obj docutils literal"><span class="pre">beam_svd</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Fetch the SVD beam transfer matrix (S V^H) for a given m.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.beam_ut.html#drift.core.beamtransfer.BeamTransfer.beam_ut" title="drift.core.beamtransfer.BeamTransfer.beam_ut"><tt class="xref py py-obj docutils literal"><span class="pre">beam_ut</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Fetch the SVD beam transfer matrix (U^H) for a given m.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.invbeam_svd.html#drift.core.beamtransfer.BeamTransfer.invbeam_svd" title="drift.core.beamtransfer.BeamTransfer.invbeam_svd"><tt class="xref py py-obj docutils literal"><span class="pre">invbeam_svd</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Fetch the SVD beam transfer matrix (S V^H) for a given m.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.beam_singularvalues.html#drift.core.beamtransfer.BeamTransfer.beam_singularvalues" title="drift.core.beamtransfer.BeamTransfer.beam_singularvalues"><tt class="xref py py-obj docutils literal"><span class="pre">beam_singularvalues</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Fetch the vector of beam singular values for a given m.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.generate.html#drift.core.beamtransfer.BeamTransfer.generate" title="drift.core.beamtransfer.BeamTransfer.generate"><tt class="xref py py-obj docutils literal"><span class="pre">generate</span></tt></a>([regen])</td>
+<td>Save out all beam transfer matrices to disk.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_telescope.html#drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_telescope" title="drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_telescope"><tt class="xref py py-obj docutils literal"><span class="pre">project_vector_sky_to_telescope</span></tt></a>(mi,&nbsp;vec)</td>
+<td>Project a vector from the sky into the visibility basis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_sky.html#drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_sky" title="drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_sky"><tt class="xref py py-obj docutils literal"><span class="pre">project_vector_telescope_to_sky</span></tt></a>(mi,&nbsp;vec)</td>
+<td>Invert a vector from the telescope space onto the sky.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_svd.html#drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_svd" title="drift.core.beamtransfer.BeamTransfer.project_vector_sky_to_svd"><tt class="xref py py-obj docutils literal"><span class="pre">project_vector_sky_to_svd</span></tt></a>(mi,&nbsp;vec[,&nbsp;temponly])</td>
+<td>Project a vector from the the sky into the SVD basis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_vector_svd_to_sky.html#drift.core.beamtransfer.BeamTransfer.project_vector_svd_to_sky" title="drift.core.beamtransfer.BeamTransfer.project_vector_svd_to_sky"><tt class="xref py py-obj docutils literal"><span class="pre">project_vector_svd_to_sky</span></tt></a>(mi,&nbsp;vec[,&nbsp;...])</td>
+<td>Project a vector from the the sky into the SVD basis.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_svd.html#drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_svd" title="drift.core.beamtransfer.BeamTransfer.project_vector_telescope_to_svd"><tt class="xref py py-obj docutils literal"><span class="pre">project_vector_telescope_to_svd</span></tt></a>(mi,&nbsp;vec)</td>
+<td>Map a vector from the telescope space into the SVD basis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_telescope.html#drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_telescope" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_telescope"><tt class="xref py py-obj docutils literal"><span class="pre">project_matrix_sky_to_telescope</span></tt></a>(mi,&nbsp;mat)</td>
+<td>Project a covariance matrix from the sky into the visibility basis.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd.html#drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd"><tt class="xref py py-obj docutils literal"><span class="pre">project_matrix_sky_to_svd</span></tt></a>(mi,&nbsp;mat[,&nbsp;temponly])</td>
+<td>Project a covariance matrix from the sky into the SVD basis.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="drift.core.beamtransfer.BeamTransfer.ntel.html" class="btn btn-neutral float-right" title="drift.core.beamtransfer.BeamTransfer.ntel"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd.html" class="btn btn-neutral" title="drift.core.beamtransfer.BeamTransfer.project_matrix_sky_to_svd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, J. Richard Shaw.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.Boo.__format__
+======================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: Boo.__format__

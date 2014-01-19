@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._picklefile
+================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer._picklefile

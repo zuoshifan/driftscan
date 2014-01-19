@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview of Driftscan &mdash; driftscan 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="driftscan 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Beam Transfer Matrices (beamtransfer)" href="beamtransfer.html"/>
+        <link rel="prev" title="driftscan" href="index.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> driftscan</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Overview of Driftscan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generating-the-analysis-products">Generating the Analysis Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-pipeline">Running the Pipeline</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="beamtransfer.html">Beam Transfer Matrices (<tt class="docutils literal"><span class="pre">beamtransfer</span></tt>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="beamtransfer.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="disharray.html">Dish Array Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="disharray.html#telescope-class">Telescope class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="disharray.html#python-driver">Python Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="disharray.html#yaml-config">YAML Config</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">driftscan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Overview of Driftscan</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="overview-of-driftscan">
+<h1>Overview of Driftscan<a class="headerlink" href="#overview-of-driftscan" title="Permalink to this headline">¶</a></h1>
+<p>driftscan is a package for the analysis of data from transit radio
+interferometers using the m-mode formalism which is described in
+<a class="reference external" href="http://arxiv.org/abs/1302.0327">arXiv:1302.0327</a> and <a class="reference external" href="http://arxiv.org/abs/1401.2095">arXiv:1401.2095</a>.</p>
+<p>Given a design of a telescope, this package can:</p>
+<ul class="simple">
+<li>Generate a set of products used to analyse data from it and simulate
+timestreams.</li>
+<li>Construct a filter which can be used to extract cosmological 21 cm emission
+from astrophysical foregrounds, such as our galaxy and radio point sources.</li>
+<li>Estimate the 21cm power spectrum using an optimal quadratic estimator</li>
+</ul>
+<p>There are essentially two separate parts to running driftscan: generating the
+analysis products, and running the pipeline. We describe how these work below.</p>
+<div class="section" id="generating-the-analysis-products">
+<h2>Generating the Analysis Products<a class="headerlink" href="#generating-the-analysis-products" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="describing-a-telescope">
+<h3>Describing a Telescope<a class="headerlink" href="#describing-a-telescope" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Code tips</p>
+<p class="last">These are specified by implementing the
+<tt class="xref py py-class docutils literal"><span class="pre">TransitTelescope</span></tt> class. Look for helpers
+such as <tt class="xref py py-class docutils literal"><span class="pre">SimplePolarisedTelescope</span></tt>.</p>
+</div>
+<p>The first step in running driftscan is to give a model for the telescope. This
+consists of:</p>
+<ul class="simple">
+<li>A description of the primary beam of each feed. This is a two component
+vector at every at every point in the sky to describe the electric field
+response of the beam.</li>
+<li>The locations of each feed which are assumed to be co-planar and located at
+a specified latitude.</li>
+<li>A model of the instrument noise. The noise is assumed to be stationary and
+Gaussian and so is uniquely described by its power spectrum.</li>
+</ul>
+</div>
+<div class="section" id="beam-transfer-matrices">
+<h3>Beam Transfer Matrices<a class="headerlink" href="#beam-transfer-matrices" title="Permalink to this headline">¶</a></h3>
+<p>Now the fun can begin. The next step is to generate the Beam Transfer matrices
+for each m-mode. This is conceptually straightforward:</p>
+<div class="sidebar">
+<p class="first sidebar-title">Code tips</p>
+<p>The Beam Transfer matrices are managed by the class
+<a class="reference internal" href="generated/drift.core.beamtransfer.BeamTransfer.html#drift.core.beamtransfer.BeamTransfer" title="drift.core.beamtransfer.BeamTransfer"><tt class="xref py py-class docutils literal"><span class="pre">BeamTransfer</span></tt></a>, and are generated by the method
+<a class="reference internal" href="generated/drift.core.beamtransfer.BeamTransfer.generate.html#drift.core.beamtransfer.BeamTransfer.generate" title="drift.core.beamtransfer.BeamTransfer.generate"><tt class="xref py py-meth docutils literal"><span class="pre">generate()</span></tt></a></p>
+<p class="last">The normal Beam matrices are accessed by
+<a class="reference internal" href="generated/drift.core.beamtransfer.BeamTransfer.beam_m.html#drift.core.beamtransfer.BeamTransfer.beam_m" title="drift.core.beamtransfer.BeamTransfer.beam_m"><tt class="xref py py-meth docutils literal"><span class="pre">beam_m()</span></tt></a>, and their inverse
+by <a class="reference internal" href="generated/drift.core.beamtransfer.BeamTransfer.invbeam_m.html#drift.core.beamtransfer.BeamTransfer.invbeam_m" title="drift.core.beamtransfer.BeamTransfer.invbeam_m"><tt class="xref py py-meth docutils literal"><span class="pre">invbeam_m()</span></tt></a>.</p>
+</div>
+<ol class="arabic simple">
+<li>Make sky maps of the polarised response for each feed pair at all observed
+frequencies.</li>
+<li>Take the spherical harmonic transform of each polarised set of maps.</li>
+<li>Transpose to group by the m, of each spherical harmonic transform. We must
+also conjugate the negative <cite>m</cite> modes to group them with the positive <cite>m</cite>
+modes.</li>
+</ol>
+<p>In practice this can be numerically challenging due to the shear quantity of
+frequencies and feed pairs present. This step is <tt class="docutils literal"><span class="pre">MPI</span></tt> parallelised and
+proceeds by distributing subsets of the responses to geneate and transform
+across many nodes, and performing an in memory transpose across all these
+nodes to group by m. It then processes the next subset, and repeats until we
+have generated the complete set.</p>
+<p>As much of the information measured by an interferometer is redundant (in that
+it tells us nothing new about the sky), we generate a new set of transfer
+matrices that map to only the useful subset of the data. This is the next step
+of the analysis (described in detail in <a class="reference external" href="http://arxiv.org/abs/1401.2095">arXiv:1401.2095</a>) and is done by
+taking repeated singular value decompositions of each m-mode. We generate
+three matrices for each m-mode:</p>
+<ul class="simple">
+<li><span class="math">\(\mathbf{U}\)</span> which maps the measured data into the SVD basis.</li>
+<li><span class="math">\(\tilde{\mathbf{B}}\)</span> which describes how the SVD modes relate to the sky</li>
+<li><span class="math">\(\tilde{\mathbf{B}}^+\)</span> the pseudo-inverse or map-making matrix,</li>
+</ul>
+<p>As each m-mode and each frequency is independent this can be trivially
+parallelised. This step also generates the pseudo-inverse matrices used for
+imaging.</p>
+</div>
+<div class="section" id="karhunen-loeve-transform">
+<h3>Karhunen Loeve Transform<a class="headerlink" href="#karhunen-loeve-transform" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="running-the-pipeline">
+<h2>Running the Pipeline<a class="headerlink" href="#running-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Meh 2.</p>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="beamtransfer.html" class="btn btn-neutral float-right" title="Beam Transfer Matrices (beamtransfer)"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="driftscan"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, J. Richard Shaw.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

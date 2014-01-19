@@ -1,0 +1,6 @@
+drift.core.beamtransfer2.Boo.__reduce_ex__
+==========================================
+
+.. currentmodule:: drift.core.beamtransfer2
+
+.. automethod:: Boo.__reduce_ex__

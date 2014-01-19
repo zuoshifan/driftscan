@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.generate_cache
+===================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.generate_cache

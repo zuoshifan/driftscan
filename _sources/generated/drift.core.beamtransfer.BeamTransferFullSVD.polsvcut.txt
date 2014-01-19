@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransferFullSVD.polsvcut
+====================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransferFullSVD.polsvcut

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransferFullSVD.ndof
+================================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransferFullSVD.ndof

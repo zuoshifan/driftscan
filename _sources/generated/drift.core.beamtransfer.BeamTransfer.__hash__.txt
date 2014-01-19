@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.__hash__
+=============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.__hash__

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.nfreq
+==========================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. autoattribute:: BeamTransfer.nfreq

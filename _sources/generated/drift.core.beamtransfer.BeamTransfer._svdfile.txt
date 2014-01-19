@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer._svdfile
+=============================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer._svdfile

@@ -1,0 +1,6 @@
+drift.core.beamtransfer.BeamTransfer.ndof
+=========================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: BeamTransfer.ndof

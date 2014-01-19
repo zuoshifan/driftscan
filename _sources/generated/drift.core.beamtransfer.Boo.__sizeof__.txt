@@ -1,0 +1,6 @@
+drift.core.beamtransfer.Boo.__sizeof__
+======================================
+
+.. currentmodule:: drift.core.beamtransfer
+
+.. automethod:: Boo.__sizeof__
